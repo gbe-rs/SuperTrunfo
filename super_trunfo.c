@@ -1,15 +1,16 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
     // Declaração de variáveis
 
     // CARTA 1
-    char estado1, codigo1[3], nome1[20];
+    char estado1, codigo1[10], nome1[20];
     int populacao1, pontos1;
     float area1, pib1;
 
     // CARTA 2
-    char estado2, codigo2[3], nome2[20];
+    char estado2, codigo2[10], nome2[20];
     int populacao2, pontos2;
     float area2, pib2;
 
@@ -21,17 +22,18 @@ int main() {
 
     // ESTADO
     printf("Digite o Estado (uma letra): ");
-    while ((getchar()) != '\n'); // limpa buffer
-    scanf("%c", &estado1);
+    scanf("%c", &estado1);  
+    getchar();  // Limpa o buffer (para remover o '\n')
 
     // CÓDIGO
-    printf("Digite o código (ex: SP): ");
-    scanf("%s", codigo1);
+    printf("Digite o código: ");
+    fgets(codigo1, sizeof(codigo1), stdin); // Lê o nome do código da carta 1
+    codigo1[strcspn(codigo1, "\n")] = 0; // Remove o '\n' do final do código
 
     // NOME DA CIDADE
     printf("Digite o nome da cidade: ");
-    while ((getchar()) != '\n'); // limpa buffer
-    fgets(nome1, sizeof(nome1), stdin);
+    fgets(nome1, sizeof(nome1), stdin); // Lê o nome da cidade da carta 1
+    nome1[strcspn(nome1, "\n")] = 0; // Remove o '\n' do final do nome
 
     // POPULAÇÃO
     printf("Digite o número de habitantes: ");
@@ -53,18 +55,20 @@ int main() {
     printf("\nInsira os dados da carta 2.\n\n");
 
     // ESTADO
+    getchar();  // Limpa o buffer 
     printf("Digite o Estado (uma letra): ");
-    while ((getchar()) != '\n'); // limpa buffer
-    scanf("%c", &estado2);
+    scanf("%c", &estado2);  
 
     // CÓDIGO
-    printf("Digite o código (ex: RJ): ");
-    scanf("%s", codigo2);
+    printf("Digite o código: ");
+    getchar();  // Limpa o buffer
+    fgets(codigo2, sizeof(codigo2), stdin); // Lê o nome do código da carta 2
+    codigo2[strcspn(codigo2, "\n")] = 0; // Remove o '\n' do final do código
 
     // NOME DA CIDADE
     printf("Digite o nome da cidade: ");
-    while ((getchar()) != '\n'); // limpa buffer
-    fgets(nome2, sizeof(nome2), stdin);
+    fgets(nome2, sizeof(nome2), stdin); // Lê o nome da cidade da carta 2
+    nome2[strcspn(nome2, "\n")] = 0; // Remove o '\n' do final do nome
 
     // POPULAÇÃO
     printf("Digite o número de habitantes: ");
@@ -85,20 +89,20 @@ int main() {
     // Exibindo os dados ao usuário:
 
     // CARTA 1
-    printf("\nCarta 1:\n");
+    printf("\nCarta 1:\n\n");
     printf("Estado: %c\n", estado1);
     printf("Código: %s\n", codigo1);
-    printf("Nome da cidade: %s", nome1); // já inclui \n
+    printf("Nome da cidade: %s \n", nome1);
     printf("População: %d\n", populacao1);
     printf("Área: %.2f km²\n", area1);
     printf("PIB: %.2f bilhões de reais\n", pib1);
     printf("Número de pontos turísticos: %d\n", pontos1);
 
     // CARTA 2
-    printf("\nCarta 2:\n");
+    printf("\nCarta 2:\n\n");
     printf("Estado: %c\n", estado2);
     printf("Código: %s\n", codigo2);
-    printf("Nome da cidade: %s", nome2); // já inclui \n
+    printf("Nome da cidade: %s\n", nome2); 
     printf("População: %d\n", populacao2);
     printf("Área: %.2f km²\n", area2);
     printf("PIB: %.2f bilhões de reais\n", pib2);
